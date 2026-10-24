@@ -75,9 +75,28 @@ int main() {
 
     LOG_SAVE << query_update_view;
 
-    std::wstring parameters = L"-S " + db_host_name + L" -d " + db_name + L" -U " + db_user_name + L" -i C:\\rasa\\night_lister.sql -o C:\\rasa\\mssql.log -P ";
-    parameters += db_password; /* hash/decrypting process is in sensitive_data.h */
+    std::wstring command_line = L"sqlcmd.exe -S " + db_host_name + L" -d " + db_name + L" -U " + db_user_name + L" -i C:\\rasa\\night_lister.sql -o C:\\rasa\\mssql.log";
 
-    ShellExecute(nullptr, L"open", L"sqlcmd.exe", parameters.c_str(), nullptr, SW_SHOWNORMAL);
-    return 0;
+    /* пароль передаётся через окружение, а не через -P: так он не виден в списке процессов и в аудите командных строк */
+    SetEnvironmentVariableW(L"SQLCMDPASSWORD", db_password.c_str()); /* hash/decrypting process is in sensitive_data.h */
+
+    STARTUPINFOW startup_info{ sizeof(startup_info) };
+    PROCESS_INFORMATION process_info{};
+    const BOOL is_started = CreateProcessW(nullptr, command_line.data(), nullptr, nullptr, FALSE, 0, nullptr, nullptr, &startup_info, &process_info);
+
+    /* дочерний процесс уже получил копию окружения, у себя переменную убираем */
+    SetEnvironmentVariableW(L"SQLCMDPASSWORD", nullptr);
+
+    if (!is_started) {
+        std::wcerr << L"sqlcmd.exe start error: " << GetLastError() << L'\n';
+        return 1;
+    }
+
+    WaitForSingleObject(process_info.hProcess, INFINITE);
+    DWORD exit_code = 1;
+    GetExitCodeProcess(process_info.hProcess, &exit_code);
+    CloseHandle(process_info.hThread);
+    CloseHandle(process_info.hProcess);
+
+    return static_cast<int>(exit_code);
 }
