@@ -1,0 +1,7 @@
+sensitive_data.h
+
+.vs/
+x64/
+Debug/
+Release/
+*.user
