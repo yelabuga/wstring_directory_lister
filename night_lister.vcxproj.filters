@@ -15,34 +15,34 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="night_lister.cpp">
+    <ClCompile Include="src\night_lister.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="func.cpp">
+    <ClCompile Include="src\func.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="src\resource.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="src\stdafx.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="func.h">
+    <ClInclude Include="src\func.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="sensitive_data.h">
+    <ClInclude Include="src\sensitive_data.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="night_lister.rc">
+    <ResourceCompile Include="src\night_lister.rc">
       <Filter>Resources</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\mfc.ico">
+    <Image Include="src\res\mfc.ico">
       <Filter>Resources</Filter>
     </Image>
   </ItemGroup>
