@@ -93,20 +93,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="night_lister.cpp" />
-    <ClCompile Include="func.cpp" />
+    <ClCompile Include="src\night_lister.cpp" />
+    <ClCompile Include="src\func.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="func.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="sensitive_data.h" />
-    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="src\func.h" />
+    <ClInclude Include="src\resource.h" />
+    <ClInclude Include="src\sensitive_data.h" />
+    <ClInclude Include="src\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="night_lister.rc" />
+    <ResourceCompile Include="src\night_lister.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\mfc.ico" />
+    <Image Include="src\res\mfc.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
